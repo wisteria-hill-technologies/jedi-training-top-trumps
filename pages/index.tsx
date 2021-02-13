@@ -1,33 +1,31 @@
 import Head from 'next/head';
+import { FC } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import styles from '../styles/Home.module.css';
-import {initializeApollo} from '../src/apollo';
+import { initializeApollo } from '../src/apollo';
+import { GetStaticProps } from 'next';
 
 const PeopleQuery = gql`
-    {
-        allPeople{
-            totalCount
-            people {
-                name
-            }
-        }
+  {
+    allPeople {
+      totalCount
+      people {
+        name
+      }
     }
+  }
 `;
 
-export default function Home() {
+const Home: FC = () => {
   const { data, loading } = useQuery(PeopleQuery);
   return (
     <div className={styles.container}>
       <Head>
         <title>Star Wars Top Trumps - Jedi Training</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="../public/favicon.ico" />
       </Head>
 
-      {
-        loading
-          ? 'Loading...'
-          : JSON.stringify(data, null, 2)
-      }
+      {loading ? 'Loading...' : JSON.stringify(data, null, 2)}
       {/*<main className={styles.main}>*/}
       {/*  <h1 className={styles.title}>*/}
       {/*    Welcome to <a href="https://nextjs.org">Next.js!</a>*/}
@@ -79,11 +77,11 @@ export default function Home() {
       {/*  </a>*/}
       {/*</footer>*/}
     </div>
-  )
-}
+  );
+};
 
 // for server side rendering
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
@@ -94,5 +92,7 @@ export async function getStaticProps() {
     props: {
       initialApolloState: apolloClient.cache.extract()
     }
-  }
-}
+  };
+};
+
+export default Home;

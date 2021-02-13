@@ -1,4 +1,9 @@
-import {ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject
+} from '@apollo/client';
 import { useMemo } from 'react';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -6,7 +11,9 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({ uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index' }),
+    link: new HttpLink({
+      uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index'
+    }),
     cache: new InMemoryCache()
   });
 }
@@ -29,4 +36,3 @@ export function useApollo(initialState) {
   const store = useMemo(() => initializeApollo(initialState), [initialState]);
   return store;
 }
-

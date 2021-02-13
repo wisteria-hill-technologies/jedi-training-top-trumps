@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
-function createApolloClient() {
+const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
@@ -16,9 +16,11 @@ function createApolloClient() {
     }),
     cache: new InMemoryCache()
   });
-}
+};
 
-export function initializeApollo(initialState = null) {
+export function initializeApollo(
+  initialState: any = null
+): ApolloClient<NormalizedCacheObject> {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   if (initialState) {
@@ -32,7 +34,8 @@ export function initializeApollo(initialState = null) {
   return apolloClient;
 }
 
-export function useApollo(initialState) {
-  const store = useMemo(() => initializeApollo(initialState), [initialState]);
-  return store;
+export function useApollo(
+  initialState: any = null
+): ApolloClient<NormalizedCacheObject> {
+  return useMemo(() => initializeApollo(initialState), [initialState]);
 }

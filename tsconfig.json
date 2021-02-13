@@ -17,7 +17,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/common/*": ["src/common/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/theme/*": ["src/theme/*"]
+    }
+
   },
   "include": [
     "next-env.d.ts",

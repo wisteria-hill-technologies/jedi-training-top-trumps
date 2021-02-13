@@ -1,6 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
-import '../styles/globals.css';
-import { useApollo } from 'src/apollo';
+import { useApollo } from 'src/common/apollo';
 import { FC } from 'react';
 import type { AppProps } from 'next/app';
 

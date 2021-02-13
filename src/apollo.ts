@@ -19,7 +19,7 @@ const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
 };
 
 export function initializeApollo(
-  initialState: any = null
+  initialState: NormalizedCacheObject | null = null
 ): ApolloClient<NormalizedCacheObject> {
   const _apolloClient = apolloClient ?? createApolloClient();
 
@@ -35,7 +35,7 @@ export function initializeApollo(
 }
 
 export function useApollo(
-  initialState: any = null
+  initialState: NormalizedCacheObject | null = null
 ): ApolloClient<NormalizedCacheObject> {
   return useMemo(() => initializeApollo(initialState), [initialState]);
 }

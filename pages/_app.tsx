@@ -1,14 +1,23 @@
+import { Fragment } from 'react';
+import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from 'src/common/apollo';
+import { useApollo } from '@/common/apollo';
 import { FC } from 'react';
 import type { AppProps } from 'next/app';
+import theme from '@/theme/index';
+import GlobalStyle from '@/theme/GlobalStyle';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const client = useApollo(pageProps.initialApolloState);
   return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <Fragment>
+      <GlobalStyle />
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ApolloProvider>
+    </Fragment>
   );
 };
 

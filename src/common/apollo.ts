@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch';
 import {
   ApolloClient,
   HttpLink,
@@ -12,7 +13,8 @@ const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index'
+      uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
+      fetch
     }),
     cache: new InMemoryCache()
   });

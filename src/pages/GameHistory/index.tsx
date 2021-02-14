@@ -1,12 +1,13 @@
 import { FC } from 'react';
+import { Div, H1 } from '@/common/AtomicElements';
 import { useQuery } from '@apollo/client';
 import { PEOPLE_QUERY } from './apollo';
 
 const GameHistory: FC = () => {
   const { data, loading } = useQuery(PEOPLE_QUERY);
   return (
-    <div>
-      <h1>Game History</h1>
+    <Div>
+      <H1>Game History</H1>
       {loading ? 'Loading...' : JSON.stringify(data, null, 2)}
 
       {/*<main className={styles.main}>*/}
@@ -59,7 +60,7 @@ const GameHistory: FC = () => {
       {/*    Powered by Jedi Force*/}
       {/*  </a>*/}
       {/*</footer>*/}
-    </div>
+    </Div>
   );
 };
 

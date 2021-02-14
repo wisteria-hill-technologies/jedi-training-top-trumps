@@ -1,16 +1,17 @@
 import Head from 'next/head';
 import { FC } from 'react';
 import Index from '@/pages/Index';
+import PageLayout from '@/common/PageLayout';
 
 const IndexPage: FC = () => {
   return (
-    <div>
+    <PageLayout>
       <Head>
         <title>Jedi Training - Star Wars Top Trumps</title>
         <link rel="icon" href="../public/favicon.ico" />
       </Head>
       <Index />
-    </div>
+    </PageLayout>
   );
 };
 

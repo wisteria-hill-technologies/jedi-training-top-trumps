@@ -4,16 +4,17 @@ import { initializeApollo } from '@/common/apollo';
 import { GetStaticProps } from 'next';
 import GameHistory from '@/pages/GameHistory';
 import { PEOPLE_QUERY } from '@/pages/GameHistory/apollo';
+import PageLayout from '@/common/PageLayout';
 
 const GameHistoryPage: FC = () => {
   return (
-    <div>
+    <PageLayout>
       <Head>
         <title>Jedi Training - Game History</title>
         <link rel="icon" href="../public/favicon.ico" />
       </Head>
       <GameHistory />
-    </div>
+    </PageLayout>
   );
 };
 

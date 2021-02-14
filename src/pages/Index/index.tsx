@@ -1,16 +1,11 @@
 import { FC } from 'react';
-import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`;
+import { Div, H1 } from '@/common/AtomicElements';
 
 const Index: FC = () => {
   return (
-    <div>
-      <Title>Home Page</Title>
-    </div>
+    <Div>
+      <H1>Home Page</H1>
+    </Div>
   );
 };
 

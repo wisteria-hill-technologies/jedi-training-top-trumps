@@ -1,5 +1,5 @@
 import { render } from '../../test-utils';
-import Index from '.';
+import Index from '@/pages/Index';
 import 'jest-styled-components';
 
 describe('Index page', () => {
@@ -7,4 +7,5 @@ describe('Index page', () => {
     const { container } = render(<Index />, { initialApolloState: null });
     expect(container).toMatchSnapshot();
   });
+  // it('should render title and subtitle', () => {});
 });

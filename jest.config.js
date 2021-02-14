@@ -13,5 +13,6 @@ module.exports = {
     '@/common/(.*)': '<rootDir>/src/common/$1',
     '@/pages/(.*)': '<rootDir>/src/pages/$1',
     '@/theme/(.*)': '<rootDir>/src/theme/$1'
-  }
+  },
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts']
 }

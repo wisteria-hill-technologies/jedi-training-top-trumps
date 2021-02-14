@@ -6,7 +6,8 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    boxSizing: border-box; // to ensure that padding is included in width
+    minWidth: 0; // to ensure the Box can shrink below its minimum content size when used as a flex item.
   }
 `;
 

@@ -47,19 +47,18 @@ export const Box = styled.div<StyledProps>`
 `;
 
 export const StyledBox = styled(Box)`
-  background-color: ${({ theme }) => theme.colors.info[3]};
-  color: ${({ theme }) => theme.colors.primary[0]};
 `;
 
 export const Div = styled(StyledBox).attrs({ as: 'div' })``;
 
-export const H1 = styled(StyledBox).attrs({ as: 'h1' })`
-  font-size: 2.5rem;
+export const H1 = styled(Box).attrs({ as: 'h1' })`
+  font-size: 3rem;
   margin: 1rem 0;
   background-color: inherit;
 `;
 
 export const H2 = styled(StyledBox).attrs({ as: 'h2' })`
+  font-size: 2.5rem;
   background-color: inherit;
 `;
 
@@ -81,7 +80,8 @@ export const Span = styled(StyledBox).attrs({ as: 'span' })`
 
 export const A = styled(StyledBox).attrs({ as: 'a' })`
   background-color: inherit;
+  color: ${({ theme }) => theme.colors.info[3]};
   &:hover {
-    color: ${({ theme }) => theme.colors.danger[2]};
+    color: ${({ theme }) => theme.colors.primary[3]};
   }
 `;

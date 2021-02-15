@@ -10,13 +10,13 @@ interface Props {
 
 const InitialView: FC<Props> = ({ selectGameMode }) => {
   return (
-    <Div textAlign="center">
+    <Div textAlign="center" width="100%">
       <H1>Jedi Training</H1>
       <H2>Star Wars Top Trumps</H2>
       <Link href="/game-history" passHref>
         <A>Game History</A>
       </Link>
-      <Div p={3} display="flex" flexDirection="column">
+      <Div p={3} display="flex" flexDirection="column" alignItems="center">
         <Button onClick={() => selectGameMode(SINGLE_PLAYER)}>
           Play against Darth Vader
         </Button>

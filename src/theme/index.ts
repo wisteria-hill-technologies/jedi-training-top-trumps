@@ -1,4 +1,6 @@
 const colors = {
+  background:
+    'linear-gradient(to right top, #081325, #081834, #0d1b43, #191e51, #291e5e);',
   color: [
     'hsl(0, 0%, 100%)',
     'hsl(0, 0%, 90%)',
@@ -37,7 +39,6 @@ const colors = {
     'hsl(345, 72%, 40%)'
   ]
 };
-
 
 const theme = {
   colors,

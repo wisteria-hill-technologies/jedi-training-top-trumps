@@ -2,30 +2,23 @@ import { FC, useState } from 'react';
 import InitialView from '@/pages/Index/InitialView';
 import SelectCategoryView from '@/pages/Index/SelectCategoryView';
 import CardsView from '@/pages/Index/CardsView';
-import { SINGLE_PLAYER, TWO_PLAYERS } from '@/pages/Index/CONSTANTS';
+import { SINGLE_PLAYER } from '@/pages/Index/CONSTANTS';
 
 const initialGameState = {
   gameMode: null,
   selectedCategory: '',
-  players: [],
-  winner: '',
-  loser: '',
-  timestamp: ''
+  players: []
 };
 
 interface GameState {
   gameMode: string | null;
   selectedCategory: string;
   players: string[];
-  winner: string;
-  loser: string;
-  timestamp: string;
 }
 
 const Index: FC = () => {
   const [gameState, setGameState] = useState<GameState>(initialGameState);
-  const { gameMode, selectedCategory, players, winner, loser, timestamp } =
-    gameState || {};
+  const { gameMode, selectedCategory, players } = gameState || {};
 
   const selectGameMode = (gameMode: string) => {
     setGameState((prevState) => ({
@@ -45,10 +38,6 @@ const Index: FC = () => {
     }));
   };
 
-  const setGameResult = (gameResult: GameState) => {
-    setGameState(gameResult);
-  };
-
   if (gameMode === null) {
     return <InitialView selectGameMode={selectGameMode} />;
   }
@@ -63,7 +52,7 @@ const Index: FC = () => {
         gameMode={gameMode}
         selectedCategory={selectedCategory}
         players={players}
-        setGameResult={setGameResult}
+        handleResetGame={() => setGameState(initialGameState)}
       />
     );
   }

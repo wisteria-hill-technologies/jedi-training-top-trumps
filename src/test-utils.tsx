@@ -1,9 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import {
-  render,
-  RenderOptions,
-  RenderResult
-} from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
 import theme from './theme/index';

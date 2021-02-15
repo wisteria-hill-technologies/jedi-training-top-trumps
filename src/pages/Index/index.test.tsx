@@ -188,8 +188,13 @@ describe('Index Page', () => {
         name: "Darth Vader's Card"
       });
 
+      const flipCardButtons = screen.getAllByRole('button', {
+        name: 'Flip Card'
+      }) as HTMLButtonElement[];
+
       expect(cardTitle1).toBeInTheDocument();
       expect(cardTitle2).toBeInTheDocument();
+      expect(flipCardButtons.length).toBe(1);
     });
     it('2 Players: should render two cards without item details', () => {
       render(<Index />, { initialApolloState: null });
@@ -210,14 +215,13 @@ describe('Index Page', () => {
         name: "Jedi Player 2's Card"
       });
 
+      const flipCardButtons = screen.getAllByRole('button', {
+        name: 'Flip Card'
+      }) as HTMLButtonElement[];
+
       expect(cardTitle1).toBeInTheDocument();
       expect(cardTitle2).toBeInTheDocument();
-    });
-    it.skip('should render one "Flip Card" button for one player game', () => {
-      throw new Error();
-    });
-    it.skip('should render two "Flip Card" button for two player game', () => {
-      throw new Error();
+      expect(flipCardButtons.length).toBe(2);
     });
     it.skip('should flip the card and display item details after clicking the "Flip Card" button', () => {
       throw new Error();

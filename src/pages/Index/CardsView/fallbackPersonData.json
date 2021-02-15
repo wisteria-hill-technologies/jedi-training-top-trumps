@@ -1,0 +1,14 @@
+{
+  "person": {
+    "id": "cGVvcGxlOjEz",
+    "name": "Chewbacca",
+    "height": 228,
+    "birthYear": "200BBY",
+    "eyeColor": "blue",
+    "homeworld": {
+      "name": "Kashyyyk",
+      "__typename": "Planet"
+    },
+    "__typename": "Person"
+  }
+}

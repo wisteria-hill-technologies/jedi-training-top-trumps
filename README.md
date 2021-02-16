@@ -1,4 +1,5 @@
 # Jedi Training - Star Wars Top Trumps Game
+You can have a look at the app by visiting https://jedi-training-top-trumps.vercel.app/
 
 ## What is it?
 Simple Star Wars Top Trumps game
@@ -83,6 +84,8 @@ Project: Includes all the tasks tracked and done for this project.
 https://github.com/nfabacus/jedi-training-top-trumps/projects/1
 
 ## Deployments
+Deployed App (Color Theme 1): https://jedi-training-top-trumps.vercel.app/
+
 - Front end app is hosted on Vercel.
 - Hasura is hosted on Heroku.
 

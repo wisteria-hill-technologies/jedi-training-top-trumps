@@ -1,3 +1,17 @@
+create type game_mode as enum ('Single Player', 'Two Players');
+create type category as enum ('People', 'Starships');
+
+create table game_records(
+    record_id serial primary key,
+    record_date timestamptz not null default current_timestamp,
+    game_mode game_mode not null,
+    category category not null,
+    winner varchar(20) not null default '',
+    loser varchar(20) not null default ''
+);
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

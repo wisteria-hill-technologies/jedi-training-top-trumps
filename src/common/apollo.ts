@@ -6,16 +6,39 @@ import {
   NormalizedCacheObject
 } from '@apollo/client';
 import { useMemo } from 'react';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
+import * as ws from 'ws';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
+
+const httpLink = new HttpLink({
+  uri: 'https://jedi-training-sw-top-trumps.herokuapp.com/v1/graphql',
+  fetch
+});
+
+const websocketOptions = {
+  lazy: true,
+  reconnect: true
+};
+
+const createWSLink = (impl?: any): WebSocketLink => {
+  return new WebSocketLink(
+    new SubscriptionClient(
+      'wss://jedi-training-sw-top-trumps.herokuapp.com/v1/graphql',
+      websocketOptions,
+      impl
+    )
+  );
+};
+
+const wsLink =
+  typeof window === 'undefined' ? createWSLink(ws) : createWSLink();
 
 const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
-      fetch
-    }),
+    link: typeof window === 'undefined' ? httpLink : wsLink,
     cache: new InMemoryCache()
   });
 };

@@ -2,7 +2,6 @@ import { render } from '../../../../test-utils';
 import { screen } from '@testing-library/react';
 import CardContent from './CardContent';
 import 'jest-styled-components';
-import Index from '@/pages/Index';
 
 const person = {
   id: 'abc',

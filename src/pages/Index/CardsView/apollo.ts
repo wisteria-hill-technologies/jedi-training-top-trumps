@@ -29,3 +29,23 @@ export const GET_STARSHIP = gql`
     }
   }
 `;
+
+export const ADD_GAME_RECORD = gql`
+  mutation addGameRecord(
+    $game_mode: game_mode
+    $category: category
+    $winner: String
+    $loser: String
+  ) {
+    insert_game_records_one(
+      object: {
+        game_mode: $game_mode
+        category: $category
+        winner: $winner
+        loser: $loser
+      }
+    ) {
+      record_id
+    }
+  }
+`;

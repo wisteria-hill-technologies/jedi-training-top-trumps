@@ -4,9 +4,9 @@ import Button from '@/common/AtomicElements/Button';
 import MessageBox from '@/common/MessageBox';
 import Card from '@/common/Card';
 import { SINGLE_PLAYER, PEOPLE } from '@/pages/Index/CONSTANTS';
-import { GET_PERSON, GET_STARSHIP } from './apollo';
+import { GET_PERSON, GET_STARSHIP, ADD_GAME_RECORD } from './apollo';
 import { randomInteger } from '@/common/utils';
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 import fallbackPersonData from './fallbackPersonData.json';
 import fallbackStarshipData from './fallbackStarshipData.json';
 import CardContent from '@/pages/Index/CardsView/CardContent/CardContent';
@@ -60,6 +60,7 @@ const CardsView: FC<Props> = ({
   handleResetGame
 }) => {
   const client = useApolloClient();
+  const [addGameRecord] = useMutation(ADD_GAME_RECORD);
   const isSinglePlayerGame = gameMode === SINGLE_PLAYER;
   const gameModeTitle = isSinglePlayerGame
     ? 'You Vs Darth Vader'
@@ -109,7 +110,16 @@ const CardsView: FC<Props> = ({
             player1Person?.height,
             player2Person?.height
           );
+          const { winner, loser } = newGameResult || {};
           setGameResult(newGameResult);
+          addGameRecord({
+            variables: {
+              game_mode: gameMode,
+              category: selectedCategory,
+              winner,
+              loser
+            }
+          });
         }
       } else {
         const player1Starship = player1Card?.starship;
@@ -122,7 +132,16 @@ const CardsView: FC<Props> = ({
             player1Starship?.hyperdriveRating,
             player2Starship?.hyperdriveRating
           );
+          const { winner, loser } = newGameResult || {};
           setGameResult(newGameResult);
+          addGameRecord({
+            variables: {
+              game_mode: gameMode,
+              category: selectedCategory,
+              winner,
+              loser
+            }
+          });
         }
       }
     }

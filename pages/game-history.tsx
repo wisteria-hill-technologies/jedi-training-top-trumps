@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { initializeApollo } from '@/common/apollo';
 import { GetStaticProps } from 'next';
 import GameHistory from '@/pages/GameHistory';
-import { PEOPLE_QUERY } from '@/pages/GameHistory/apollo';
+import { GAME_RECORDS_QUERY } from '@/pages/GameHistory/apollo';
 import PageContainer from '@/common/PageLayout/PageContainer';
 
 const GameHistoryPage: FC = () => {
@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
-    query: PEOPLE_QUERY
+    query: GAME_RECORDS_QUERY
   });
 
   return {

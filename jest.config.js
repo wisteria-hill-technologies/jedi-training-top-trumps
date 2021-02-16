@@ -16,6 +16,7 @@ module.exports = {
   },
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   coveragePathIgnorePatterns: [
-    '<rootDir>/mocks/handlers.ts'
+    '<rootDir>/mocks/handlers.ts',
+    '<rootDir>/src/common/utils/index.ts'
   ]
 }

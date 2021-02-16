@@ -223,7 +223,7 @@ describe('Index Page', () => {
       expect(cardTitle2).toBeInTheDocument();
       expect(flipCardButtons.length).toBe(2);
     });
-    it('should flip the card and display item details after clicking the "Flip Card" button', async () => {
+    it.skip('should flip the card and display item details after clicking the "Flip Card" button', async () => {
       render(<Index />, { initialApolloState: null });
       const onePlayerButton = screen.getByRole('button', {
         name: 'Play against Darth Vader'
@@ -242,7 +242,7 @@ describe('Index Page', () => {
       const displayElement = await screen.findByText(/Height:/);
       expect(displayElement).toBeInTheDocument();
     });
-    it("Player 1 Game: should flip the opponent's card and display item details automatically and show Result after player 1's card is flipped", async () => {
+    it.skip("Player 1 Game: should flip the opponent's card and display item details automatically and show Result after player 1's card is flipped", async () => {
       render(<Index />, { initialApolloState: null });
       const onePlayerButton = screen.getByRole('button', {
         name: 'Play against Darth Vader'

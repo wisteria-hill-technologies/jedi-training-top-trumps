@@ -84,9 +84,9 @@ Project: Includes all the tasks tracked and done for this project.
 https://github.com/nfabacus/jedi-training-top-trumps/projects/1
 
 ## Deployments
-Deployed App (Color Theme 1): ```https://jedi-training-top-trumps.vercel.app/```
+Deployed App (Color Theme 1): https://jedi-training-top-trumps.vercel.app/
 
-Deployed App (Color Theme 2): ```https://jedi-training-top-trumps.nobyfujioka.vercel.app/```
+Deployed App (Color Theme 2): https://jedi-training-top-trumps.nobyfujioka.vercel.app/
 
 - Front end app is hosted on Vercel.
 - Hasura is hosted on Heroku.

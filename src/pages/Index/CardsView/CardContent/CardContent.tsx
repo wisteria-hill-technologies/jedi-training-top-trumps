@@ -21,7 +21,6 @@ interface Starship {
   starshipClass?: string;
   length?: number;
   crew?: string;
-  passengers?: string;
 }
 
 interface Props {

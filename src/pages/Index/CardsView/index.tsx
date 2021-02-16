@@ -9,7 +9,7 @@ import { randomInteger } from '@/common/utils';
 import { useApolloClient } from '@apollo/client';
 import fallbackPersonData from './fallbackPersonData.json';
 import fallbackStarshipData from './fallbackStarshipData.json';
-import CardContent from '@/pages/Index/CardsView/CardContent';
+import CardContent from '@/pages/Index/CardsView/CardContent/CardContent';
 import Link from 'next/link';
 
 interface Props {
@@ -89,9 +89,13 @@ const CardsView: FC<Props> = ({
   };
 
   useEffect(() => {
+    let mounted = true;
     if (isSinglePlayerGame && player1Card) {
-      getItem(selectedCategory, 1);
+      mounted && getItem(selectedCategory, 1);
     }
+    return () => {
+      mounted = false;
+    };
   }, [player1Card, isSinglePlayerGame]);
 
   useEffect(() => {
@@ -196,7 +200,7 @@ const CardsView: FC<Props> = ({
 
           const cardContent = index === 0 ? player1Card : player2Card;
           return (
-            <Card key={player?.replaceAll(' ', '_')}>
+            <Card key={player}>
               {cardContent ? (
                 <CardContent
                   title={title}

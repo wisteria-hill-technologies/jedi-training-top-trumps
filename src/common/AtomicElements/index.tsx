@@ -46,8 +46,7 @@ export const Box = styled.div<StyledProps>`
   ${shadow}
 `;
 
-export const StyledBox = styled(Box)`
-`;
+export const StyledBox = styled(Box)``;
 
 export const Div = styled(StyledBox).attrs({ as: 'div' })``;
 

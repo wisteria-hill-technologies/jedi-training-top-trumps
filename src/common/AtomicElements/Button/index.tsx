@@ -10,6 +10,7 @@ interface Props {
   backgroundColor?: string;
   onClick: () => void;
   bottom?: string;
+  position?: 'absolute';
 }
 
 const StyledButton: FC<Props> = (props) => (

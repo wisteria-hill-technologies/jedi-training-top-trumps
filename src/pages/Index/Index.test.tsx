@@ -1,5 +1,5 @@
 import { render } from '../../test-utils';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import Index from '@/pages/Index';
 import 'jest-styled-components';
 
@@ -223,24 +223,58 @@ describe('Index Page', () => {
       expect(cardTitle2).toBeInTheDocument();
       expect(flipCardButtons.length).toBe(2);
     });
-    it.skip('should flip the card and display item details after clicking the "Flip Card" button', () => {
-      throw new Error();
+    it('should flip the card and display item details after clicking the "Flip Card" button', async () => {
+      render(<Index />, { initialApolloState: null });
+      const onePlayerButton = screen.getByRole('button', {
+        name: 'Play against Darth Vader'
+      }) as HTMLButtonElement;
+
+      fireEvent.click(onePlayerButton);
+      const peopleCategoryButton = screen.getByRole('button', {
+        name: 'People'
+      }) as HTMLButtonElement;
+      fireEvent.click(peopleCategoryButton);
+
+      const flipCardButton = screen.getByRole('button', {
+        name: 'Flip Card'
+      }) as HTMLButtonElement;
+      fireEvent.click(flipCardButton);
+      const displayElement = await screen.findByText(/Height:/);
+      expect(displayElement).toBeInTheDocument();
     });
-    it.skip("Player 1 Game: should flip the oponent's card and display item details automatically after player 1's card is flipped", () => {
-      // throw new Error();
-    });
-  });
-  describe.skip('View 3 with game result', () => {
-    it('should render the game result to show who won, lost or it was draw after all the cards are flipped', () => {
-      // throw new Error();
-    });
-    it('should render "Play Again" button to go back to Initial View (View 1)', () => {
-      const { container } = render(<Index />, { initialApolloState: null });
-      // throw new Error();
-    });
-    it('should render the link for user to navigate to Game History Page', () => {
-      const { container } = render(<Index />, { initialApolloState: null });
-      // throw new Error();
+    it("Player 1 Game: should flip the opponent's card and display item details automatically and show Result after player 1's card is flipped", async () => {
+      render(<Index />, { initialApolloState: null });
+      const onePlayerButton = screen.getByRole('button', {
+        name: 'Play against Darth Vader'
+      }) as HTMLButtonElement;
+
+      fireEvent.click(onePlayerButton);
+      const peopleCategoryButton = screen.getByRole('button', {
+        name: 'People'
+      }) as HTMLButtonElement;
+      fireEvent.click(peopleCategoryButton);
+
+      const flipCardButton = screen.getByRole('button', {
+        name: 'Flip Card'
+      }) as HTMLButtonElement;
+      fireEvent.click(flipCardButton);
+      await waitFor(() => {
+        const displayElements = screen.getAllByText(/Height:/);
+        const playAgainButton = screen.getByRole('button', {
+          name: 'Play Again'
+        }) as HTMLButtonElement;
+        expect(displayElements.length).toBe(2);
+        const wonText = screen.getByText(/WON!/);
+        const lostText = screen.getByText(/Lost!/);
+        const linkElement = screen.getByRole('link', {
+          name: 'Game History'
+        }) as HTMLAnchorElement;
+        expect(linkElement).toBeInTheDocument();
+        expect(linkElement.pathname).toBe('/game-history');
+        expect(wonText).toBeInTheDocument();
+        expect(lostText).toBeInTheDocument();
+        expect(playAgainButton).toBeInTheDocument();
+      });
     });
   });
 });

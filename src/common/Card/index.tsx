@@ -11,7 +11,7 @@ const Card: FC = ({ children, ...props }) => (
     width="20rem"
     height="25rem"
     padding={3}
-    background="linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);"
+    backgroundColor="primary.2"
     fontSize={4}
     fontWeight="bold"
     borderWidth={1}

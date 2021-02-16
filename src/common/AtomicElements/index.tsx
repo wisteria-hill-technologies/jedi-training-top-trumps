@@ -79,7 +79,7 @@ export const Span = styled(StyledBox).attrs({ as: 'span' })`
 
 export const A = styled(StyledBox).attrs({ as: 'a' })`
   background-color: inherit;
-  color: ${({ theme }) => theme.colors.info[3]};
+  color: ${({ theme }) => theme.colors.danger[1]};
   &:hover {
     color: ${({ theme }) => theme.colors.primary[3]};
   }

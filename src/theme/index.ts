@@ -1,6 +1,6 @@
 const colors = {
   background:
-    'linear-gradient(to right top, #081325, #081834, #0d1b43, #191e51, #291e5e);',
+    'linear-gradient(to right top, #051937, #444964, #808195, #bfbec8, #ffffff);',
   color: [
     'hsl(0, 0%, 100%)',
     'hsl(0, 0%, 90%)',

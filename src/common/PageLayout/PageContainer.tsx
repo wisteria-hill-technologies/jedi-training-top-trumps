@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const PageContainer = styled(StyledBox)`
   min-height: 100vh;
   padding: 2rem;
-  color: ${({ theme }) => theme.colors.primary[0]};
+  color: ${({ theme }) => theme.colors.color[0]};
   background: ${({ theme }) => theme.colors.background};
 `;
 

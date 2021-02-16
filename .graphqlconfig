@@ -1,0 +1,11 @@
+{
+  "name": "Jedi Training Top Trumps GraphQL Schema",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        "introspect": true
+      }
+    }
+  }
+}

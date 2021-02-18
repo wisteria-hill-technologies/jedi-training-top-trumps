@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { A, Div, H1, H2, P } from '@/common/AtomicElements';
-import { useSubscription } from '@apollo/client';
-import { GAME_RECORDS_SUBSCRIPTION } from './apollo';
+import { useQueryOrSubscription } from '@/common/apollo';
 import Link from 'next/link';
 
 interface GameRecord {
@@ -14,7 +13,7 @@ interface GameRecord {
 }
 
 const GameHistory: FC = () => {
-  const { data, loading } = useSubscription(GAME_RECORDS_SUBSCRIPTION);
+  const { data, loading } = useQueryOrSubscription();
   return (
     <Div display="flex" flexDirection="column" alignItems="center" width="100%">
       <H1>Game History</H1>

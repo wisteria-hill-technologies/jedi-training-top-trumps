@@ -3,12 +3,18 @@ import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
-  NormalizedCacheObject
+  NormalizedCacheObject,
+  useQuery,
+  useSubscription
 } from '@apollo/client';
 import { useMemo } from 'react';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import * as ws from 'ws';
+import {
+  GAME_RECORDS_QUERY,
+  GAME_RECORDS_SUBSCRIPTION
+} from '@/pages/GameHistory/apollo';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
@@ -38,7 +44,10 @@ const wsLink =
 const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: typeof window === 'undefined' ? httpLink : wsLink,
+    link:
+      typeof window === 'undefined' || process.env.NODE_ENV === 'test'
+        ? httpLink
+        : wsLink,
     cache: new InMemoryCache()
   });
 };
@@ -64,3 +73,23 @@ export function useApollo(
 ): ApolloClient<NormalizedCacheObject> {
   return useMemo(() => initializeApollo(initialState), [initialState]);
 }
+
+export const useQueryOrSubscription = () => {
+  const isTest = process.env.NODE_ENV === 'test';
+  const { data: queryData, loading: queryLoading } = useQuery(
+    GAME_RECORDS_QUERY,
+    {
+      skip: !isTest
+    }
+  );
+  const {
+    data: subscriptionData,
+    loading: subscriptionLoading
+  } = useSubscription(GAME_RECORDS_SUBSCRIPTION, {
+    skip: isTest
+  });
+
+  const loading = isTest ? queryLoading : subscriptionLoading;
+  const data = isTest ? queryData : subscriptionData;
+  return { data, loading };
+};

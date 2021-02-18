@@ -1,5 +1,5 @@
 import { render } from '../../test-utils';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import Index from '@/pages/Index';
 import 'jest-styled-components';
 
@@ -169,7 +169,7 @@ describe('Index Page', () => {
     });
   });
   describe('View 3 - Cards View for Selected Category', () => {
-    it('Single Player: should render two cards without item details', () => {
+    it('Single Player Game: should render two cards without item details', () => {
       render(<Index />, { initialApolloState: null });
       const onePlayerButton = screen.getByRole('button', {
         name: 'Play against Darth Vader'
@@ -196,7 +196,7 @@ describe('Index Page', () => {
       expect(cardTitle2).toBeInTheDocument();
       expect(flipCardButtons.length).toBe(1);
     });
-    it('2 Players: should render two cards without item details', () => {
+    it('2 Players Game: should render two cards without item details', () => {
       render(<Index />, { initialApolloState: null });
       const twoPlayerButton = screen.getByRole('button', {
         name: '2 Jedi Players'
@@ -223,7 +223,7 @@ describe('Index Page', () => {
       expect(cardTitle2).toBeInTheDocument();
       expect(flipCardButtons.length).toBe(2);
     });
-    it.skip('should flip the card and display item details after clicking the "Flip Card" button', async () => {
+    it('Single Player Game: should flip the card and display item details after clicking the "Flip Card" button', async () => {
       render(<Index />, { initialApolloState: null });
       const onePlayerButton = screen.getByRole('button', {
         name: 'Play against Darth Vader'
@@ -239,10 +239,10 @@ describe('Index Page', () => {
         name: 'Flip Card'
       }) as HTMLButtonElement;
       fireEvent.click(flipCardButton);
-      const displayElement = await screen.findByText(/Height:/);
-      expect(displayElement).toBeInTheDocument();
+      const card1Text = await screen.findByText('Height: 167cm');
+      expect(card1Text).toBeInTheDocument();
     });
-    it.skip("Player 1 Game: should flip the opponent's card and display item details automatically and show Result after player 1's card is flipped", async () => {
+    it("Single Player Game: should flip the opponent's card and display item details automatically and show Result after player 1's card is flipped", async () => {
       render(<Index />, { initialApolloState: null });
       const onePlayerButton = screen.getByRole('button', {
         name: 'Play against Darth Vader'
@@ -258,23 +258,69 @@ describe('Index Page', () => {
         name: 'Flip Card'
       }) as HTMLButtonElement;
       fireEvent.click(flipCardButton);
-      await waitFor(() => {
-        const displayElements = screen.getAllByText(/Height:/);
-        const playAgainButton = screen.getByRole('button', {
-          name: 'Play Again'
-        }) as HTMLButtonElement;
-        expect(displayElements.length).toBe(2);
-        const wonText = screen.getByText(/WON!/);
-        const lostText = screen.getByText(/Lost!/);
-        const linkElement = screen.getByRole('link', {
-          name: 'Game History'
-        }) as HTMLAnchorElement;
-        expect(linkElement).toBeInTheDocument();
-        expect(linkElement.pathname).toBe('/game-history');
-        expect(wonText).toBeInTheDocument();
-        expect(lostText).toBeInTheDocument();
-        expect(playAgainButton).toBeInTheDocument();
+      const card1Text = await screen.findByText('Height: 178cm');
+      const card2Text = await screen.findByText('Height: 183cm');
+      const playAgainButton = screen.getByRole('button', {
+        name: 'Play Again'
+      }) as HTMLButtonElement;
+      expect(card1Text).toBeInTheDocument();
+      expect(card2Text).toBeInTheDocument();
+      const resultText = screen.getByText('You Lost! Darth Vader WON!');
+      const linkElement = screen.getByRole('link', {
+        name: 'Game History'
+      }) as HTMLAnchorElement;
+      expect(linkElement).toBeInTheDocument();
+      expect(linkElement.pathname).toBe('/game-history');
+      expect(resultText).toBeInTheDocument();
+      expect(playAgainButton).toBeInTheDocument();
+    });
+    it('2 Players Game: After two players flip cards, show Game Result', async () => {
+      render(<Index />, { initialApolloState: null });
+      const twoPlayerButton = screen.getByRole('button', {
+        name: '2 Jedi Players'
+      }) as HTMLButtonElement;
+
+      fireEvent.click(twoPlayerButton);
+      const peopleCategoryButton = screen.getByRole('button', {
+        name: 'People'
+      }) as HTMLButtonElement;
+      fireEvent.click(peopleCategoryButton);
+
+      const cardTitle1 = screen.getByRole('heading', {
+        name: "Jedi Player 1's Card"
       });
+      const cardTitle2 = screen.getByRole('heading', {
+        name: "Jedi Player 2's Card"
+      });
+
+      const flipCardButtons = screen.getAllByRole('button', {
+        name: 'Flip Card'
+      }) as HTMLButtonElement[];
+
+      expect(cardTitle1).toBeInTheDocument();
+      expect(cardTitle2).toBeInTheDocument();
+      expect(flipCardButtons.length).toBe(2);
+
+      fireEvent.click(flipCardButtons[0]);
+      fireEvent.click(flipCardButtons[1]);
+
+      const card1Text = await screen.findByText('Height: 190cm');
+      const card2Text = await screen.findByText('Height: 180cm');
+      const playAgainButton = screen.getByRole('button', {
+        name: 'Play Again'
+      }) as HTMLButtonElement;
+      expect(card1Text).toBeInTheDocument();
+      expect(card2Text).toBeInTheDocument();
+      const resultText = screen.getByText(
+        /Jedi Player 1 WON!/
+      );
+      const linkElement = screen.getByRole('link', {
+        name: 'Game History'
+      }) as HTMLAnchorElement;
+      expect(linkElement).toBeInTheDocument();
+      expect(linkElement.pathname).toBe('/game-history');
+      expect(resultText).toBeInTheDocument();
+      expect(playAgainButton).toBeInTheDocument();
     });
   });
 });

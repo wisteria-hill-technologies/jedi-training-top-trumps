@@ -1,7 +1,6 @@
 import { render } from '../../test-utils';
 import GameHistory from '@/pages/GameHistory';
 import 'jest-styled-components';
-import Index from '@/pages/Index';
 import { screen, waitFor } from '@testing-library/react';
 
 describe('Game History Page', () => {
@@ -18,11 +17,11 @@ describe('Game History Page', () => {
     expect(h1Element).toBeInTheDocument();
     expect(h2Element).toBeInTheDocument();
   });
-  it.skip('should render the list of Game History records with selected category, winner, looser, or draw, and timestamp', async () => {
+  it('should render the list of Game History records with selected category, winner, looser, or draw, and timestamp', async () => {
     render(<GameHistory />, { initialApolloState: null });
-    await waitFor(() => {
-      const gameModeText = screen.getByText(/Game Mode/);
-      expect(gameModeText).toBeInTheDocument();
-    });
+    const gameModeTextArr = await screen.findAllByText(/Game Mode:/);
+    const gameModeText = await screen.findByText(/Two Players/);
+    expect(gameModeTextArr.length).toBe(2);
+    expect(gameModeText).toBeInTheDocument();
   });
 });

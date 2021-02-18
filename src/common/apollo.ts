@@ -44,10 +44,7 @@ const wsLink =
 const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link:
-      typeof window === 'undefined' || process.env.NODE_ENV === 'test'
-        ? httpLink
-        : wsLink,
+    link: typeof window === 'undefined' ? httpLink : wsLink,
     cache: new InMemoryCache()
   });
 };

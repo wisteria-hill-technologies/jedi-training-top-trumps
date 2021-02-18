@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { PEOPLE, STARSHIPS } from '@/pages/Index/CONSTANTS';
-import { Div, H1, H2, H3, P } from '@/common/AtomicElements';
+import { PEOPLE } from '@/pages/Index/CONSTANTS';
+import { Div, H3, P } from '@/common/AtomicElements';
 
 interface Person {
   id: string;
@@ -45,9 +45,15 @@ const CardContent: FC<Props> = ({
         <P fontSize={5} fontWeight="bold">
           Height: {height}cm
         </P>
-        <P fontSize={3} m={0}>Birth Year: {birthYear}</P>
-        <P fontSize={3} m={0}>Eye Color: {eyeColor}</P>
-        <P fontSize={3} m={0}>Home World: {homeworld?.name}</P>
+        <P fontSize={3} m={0}>
+          Birth Year: {birthYear}
+        </P>
+        <P fontSize={3} m={0}>
+          Eye Color: {eyeColor}
+        </P>
+        <P fontSize={3} m={0}>
+          Home World: {homeworld?.name}
+        </P>
       </Div>
     );
   } else {

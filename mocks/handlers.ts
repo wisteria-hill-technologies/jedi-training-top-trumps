@@ -266,7 +266,7 @@ export const handlers = [
             {
               id: 'cGVvcGxlOjI0',
               name: 'Bossk',
-              height: 190,
+              height: 197,
               birthYear: '53BBY',
               eyeColor: 'red',
               homeworld: {
@@ -922,7 +922,7 @@ export const handlers = [
         person: {
           id: 'cGVvcGxlOjI0',
           name: 'Bossk',
-          height: 190,
+          height: 999,
           birthYear: '53BBY',
           eyeColor: 'red',
           homeworld: {
@@ -934,7 +934,7 @@ export const handlers = [
         person: {
           id: 'cGVvcGxlOjI3',
           name: 'Ackbar',
-          height: 180,
+          height: 777,
           birthYear: '41BBY',
           eyeColor: 'orange',
           homeworld: {

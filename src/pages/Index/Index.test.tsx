@@ -169,7 +169,7 @@ describe('Index Page', () => {
     });
   });
   describe('View 3 - Cards View for Selected Category', () => {
-    it('Single Player Game: should render two cards without item details', () => {
+    it('Single Player Game: People Category - should render two cards without item details', () => {
       render(<Index />, { initialApolloState: null });
       const onePlayerButton = screen.getByRole('button', {
         name: 'Play against Darth Vader'
@@ -178,6 +178,33 @@ describe('Index Page', () => {
       fireEvent.click(onePlayerButton);
       const peopleCategoryButton = screen.getByRole('button', {
         name: 'People'
+      }) as HTMLButtonElement;
+      fireEvent.click(peopleCategoryButton);
+
+      const cardTitle1 = screen.getByRole('heading', {
+        name: 'Your Card'
+      });
+      const cardTitle2 = screen.getByRole('heading', {
+        name: "Darth Vader's Card"
+      });
+
+      const flipCardButtons = screen.getAllByRole('button', {
+        name: 'Flip Card'
+      }) as HTMLButtonElement[];
+
+      expect(cardTitle1).toBeInTheDocument();
+      expect(cardTitle2).toBeInTheDocument();
+      expect(flipCardButtons.length).toBe(1);
+    });
+    it('Single Player Game: Starship Category - should render two cards without item details', () => {
+      render(<Index />, { initialApolloState: null });
+      const onePlayerButton = screen.getByRole('button', {
+        name: 'Play against Darth Vader'
+      }) as HTMLButtonElement;
+
+      fireEvent.click(onePlayerButton);
+      const peopleCategoryButton = screen.getByRole('button', {
+        name: 'Starships'
       }) as HTMLButtonElement;
       fireEvent.click(peopleCategoryButton);
 
@@ -304,8 +331,8 @@ describe('Index Page', () => {
       fireEvent.click(flipCardButtons[0]);
       fireEvent.click(flipCardButtons[1]);
 
-      const card1Text = await screen.findByText('Height: 190cm');
-      const card2Text = await screen.findByText('Height: 180cm');
+      const card1Text = await screen.findByText('Height: 999cm');
+      const card2Text = await screen.findByText('Height: 777cm');
       const playAgainButton = screen.getByRole('button', {
         name: 'Play Again'
       }) as HTMLButtonElement;

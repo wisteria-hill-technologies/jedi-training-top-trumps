@@ -1,7 +1,7 @@
 import { render } from '../../test-utils';
 import GameHistory from '@/pages/GameHistory';
 import 'jest-styled-components';
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 describe('Game History Page', () => {
   it('should match the snapshot', () => {

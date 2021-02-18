@@ -311,9 +311,7 @@ describe('Index Page', () => {
       }) as HTMLButtonElement;
       expect(card1Text).toBeInTheDocument();
       expect(card2Text).toBeInTheDocument();
-      const resultText = screen.getByText(
-        /Jedi Player 1 WON!/
-      );
+      const resultText = screen.getByText(/Jedi Player 1 WON!/);
       const linkElement = screen.getByRole('link', {
         name: 'Game History'
       }) as HTMLAnchorElement;

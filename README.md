@@ -1,6 +1,8 @@
 # Jedi Training - Star Wars Top Trumps Game
 You can have a look at the app by visiting https://jedi-training-top-trumps.vercel.app/
 
+Note: <p style="color: orange">Please note that the backend of this app is hosted on the free hosting of Heroku, so it may take some time for the server to wake up. If not responsive, please refresh the page and wait.</p>
+
 ## What is it?
 Simple Star Wars Top Trumps game
 
@@ -86,6 +88,8 @@ https://github.com/nfabacus/jedi-training-top-trumps/projects/1
 ## Deployments
 Deployed App (Color Theme 1): https://jedi-training-top-trumps.vercel.app/
 
+Deployed App (Color Theme 2): https://jedi-training-top-trumps.nobyfujioka.vercel.app/
+
 - Front end app is hosted on Vercel.
 - Hasura is hosted on Heroku.
 
@@ -99,8 +103,19 @@ yarn run dev
 3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Tests
-```bash
+- Test approach: TDD for stories with mainly functional testing
+- Asynchronous calls were dealt with Mock Service Worker.
+
+How to run tests
 ```bash
 yarn run test
 ```
-ToDo: Some tests are skipped as they broke when subscription was introduced to the app.  These to be fixed.
+
+Test Coverage
+```bash
+yarn run test --coverage
+```
+
+## Other information
+Styling was not a priority for this app, but it was made to be highly customisable and extendable in terms of design by using styled system and styled components.
+

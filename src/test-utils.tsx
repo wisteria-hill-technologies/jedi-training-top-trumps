@@ -1,20 +1,36 @@
 import React, { FC, Fragment } from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import { ApolloProvider } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache
+} from '@apollo/client';
 import theme from './theme/index';
-import { useApollo } from './common/apollo';
 import GlobalStyle from './theme/GlobalStyle';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import fetch from 'whatwg-fetch';
 
 interface InitialApolloState {
   initialApolloState?: any;
 }
 
+const httpLink = new HttpLink({
+  uri: 'https://jedi-training-sw-top-trumps.herokuapp.com/v1/graphql',
+  fetch
+});
+
 const AllTheProviders: FC<InitialApolloState> = ({
   children,
   initialApolloState
 }) => {
-  const client = useApollo(initialApolloState);
+  const client = new ApolloClient({
+    ssrMode: typeof window === 'undefined',
+    link: httpLink,
+    cache: new InMemoryCache()
+  });
 
   return (
     <Fragment>

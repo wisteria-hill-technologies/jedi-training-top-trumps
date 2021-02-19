@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { A, Div, H1, H2 } from '@/common/AtomicElements';
+import { A, Div, H1, H2, P } from '@/common/AtomicElements';
 import Link from 'next/link';
 import Button from '@/common/AtomicElements/Button';
 import { SINGLE_PLAYER, TWO_PLAYERS } from '@/pages/Index/CONSTANTS';
@@ -13,6 +13,10 @@ const InitialView: FC<Props> = ({ selectGameMode }) => {
     <Div textAlign="center" width="100%">
       <H1>Jedi Training</H1>
       <H2>Star Wars Top Trumps</H2>
+      <P fontWeight="bold" fontSize={3}>
+        If the game is unresponsive, the server may be asleep. Please wait up to
+        a minute or so.
+      </P>
       <Link href="/game-history" passHref>
         <A>Game History</A>
       </Link>
